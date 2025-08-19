@@ -145,7 +145,7 @@ function Kavo.CreateLib(kavName, themeList)
 
     themeList = themeList or {}
     local selectedTab 
-    kavName = LibName
+    kavName = kavName or "KavoUI"
     table.insert(Kavo, kavName)
     for i,v in pairs(game.CoreGui:GetChildren()) do
         if v:IsA("ScreenGui") and v.Name == kavName then
