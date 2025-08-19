@@ -145,7 +145,7 @@ function Kavo.CreateLib(kavName, themeList)
 
     themeList = themeList or {}
     local selectedTab 
-    kavName = kavName or "Library"
+    kavName = kavName or "KLibrary"
     table.insert(Kavo, kavName)
     for i,v in pairs(game.CoreGui:GetChildren()) do
         if v:IsA("ScreenGui") and v.Name == kavName then
@@ -182,7 +182,7 @@ function Kavo.CreateLib(kavName, themeList)
     blurFrame.ZIndex = 999
 
     ScreenGui.Parent = game.CoreGui
-    ScreenGui.Name = LibName
+    ScreenGui.Name = kavName
     ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
     ScreenGui.ResetOnSpawn = false
 
@@ -194,8 +194,8 @@ function Kavo.CreateLib(kavName, themeList)
     Main.Position = UDim2.new(0.5, 0, 0.5, 0)
     Main.Size = UDim2.new(0, 525, 0, 314)
     Main.Visible = true
-	Kavo.Main = Main
-    
+    Kavo.Main = Main
+
 	ReButton.Name = "ReButton"
 	ReButton.Parent = ScreenGui
 	ReButton.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
