@@ -97,8 +97,12 @@ end)
 
 local LibName = "kavolib"
 
-if game.CoreGui:FindFirstChild(LibName) then
-    game.CoreGui[LibName]:Destroy()
+local LibName = "kavolib"
+
+for i, gui in pairs(game.CoreGui:GetChildren()) do
+    if gui:IsA("ScreenGui") and gui.Name == LibName then
+        gui:Destroy()
+    end
 end
 
 function Kavo:ToggleUI()
