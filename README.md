@@ -1,2 +1,2 @@
 # Terra-Community
-Welcome
+**Welcome to Terra Community**
