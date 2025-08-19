@@ -97,8 +97,6 @@ end)
 
 local LibName = "kavolib"
 
-local LibName = "kavolib"
-
 for i, gui in pairs(game.CoreGui:GetChildren()) do
     if gui:IsA("ScreenGui") and gui.Name == LibName then
         gui:Destroy()
@@ -200,7 +198,7 @@ function Kavo.CreateLib(kavName, themeList)
     Main.ClipsDescendants = true
     Main.AnchorPoint = Vector2.new(0.5, 0.5)
     Main.Position = UDim2.new(0.5, 0, 0.5, 0)
-    Main.Size = UDim2.new(0, 525, 0, 314)
+    Main.Size = UDim2.new(0, 525, 0, 312)
     Main.Visible = true
     Kavo.Main = Main
 
