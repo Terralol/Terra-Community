@@ -194,6 +194,7 @@ function Kavo.CreateLib(kavName, themeList)
     Main.Position = UDim2.new(0.5, 0, 0.5, 0)
     Main.Size = UDim2.new(0, 525, 0, 314)
     Main.Visible = true
+	Kavo.Main = Main
     
 	ReButton.Name = "ReButton"
 	ReButton.Parent = ScreenGui
