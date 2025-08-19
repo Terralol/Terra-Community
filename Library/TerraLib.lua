@@ -97,6 +97,10 @@ end)
 
 local LibName = "kavolib"
 
+if game.CoreGui:FindFirstChild(LibName) then
+    game.CoreGui[LibName]:Destroy()
+end
+
 function Kavo:ToggleUI()
     if game.CoreGui[LibName].Enabled then
         game.CoreGui[LibName].Enabled = false
