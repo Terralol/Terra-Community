@@ -95,7 +95,7 @@ end
 Settings = game:service'HttpService':JSONEncode(readfile(Name))
 end)
 
-local LibName = "KavoUI"
+local LibName = "kavolib"
 
 function Kavo:ToggleUI()
     if game.CoreGui[LibName].Enabled then
@@ -145,7 +145,7 @@ function Kavo.CreateLib(kavName, themeList)
 
     themeList = themeList or {}
     local selectedTab 
-    kavName = kavName or "KavoUI"
+    kavName = kavName or "Library"
     table.insert(Kavo, kavName)
     for i,v in pairs(game.CoreGui:GetChildren()) do
         if v:IsA("ScreenGui") and v.Name == kavName then
