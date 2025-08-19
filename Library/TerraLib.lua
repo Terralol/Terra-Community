@@ -111,7 +111,7 @@ function Kavo:ToggleUI()
     end
 end
 
-function Kavo.CreateLib(kavName, themeList)
+function Kavo.CreateWindow(kavName, themeList)
     if not themeList then
         themeList = themes
     end
@@ -496,7 +496,7 @@ end)
             end
         end)()
     
-        function Sections:NewSection(secName, hidden)
+        function Sections:AddSection(secName, hidden)
             secName = secName or "Section"
             local sectionFunctions = {}
             local modules = {}
@@ -600,7 +600,7 @@ end)
                 updateSectionFrame()
                 UpdateSize()
             local Elements = {}
-            function Elements:NewButton(bname,tipINf, callback)
+            function Elements:AddButton(bname,tipINf, callback)
                 showLogo = showLogo or true
                 local ButtonFunction = {}
                 tipINf = tipINf or "No TIP Entered"
@@ -801,7 +801,7 @@ end)
                 return ButtonFunction
             end
 
-            function Elements:NewTextBox(tname, tTip, callback)
+            function Elements:AddTextBox(tname, tTip, callback)
                 tname = tname or "Textbox"
                 tTip = tTip or "Gets a value of Textbox"
                 callback = callback or function() end
@@ -1246,7 +1246,7 @@ end)
                     return TogFunction
             end
 
-            function Elements:NewSlider(slidInf, slidTip, maxvalue, minvalue, callback)
+            function Elements:AddSlider(slidInf, slidTip, maxvalue, minvalue, callback)
                 slidInf = slidInf or "Slider"
                 slidTip = slidTip or "Slider tip here"
                 maxvalue = maxvalue or 500
@@ -1490,7 +1490,7 @@ end)
                 end)        
             end
 
-            function Elements:NewDropdown(dropname, dropinf, list, callback)
+            function Elements:AddDropdown(dropname, dropinf, list, callback)
                 local DropFunction = {}
                 dropname = dropname or "Dropdown"
                 list = list or {}
@@ -1938,7 +1938,7 @@ end)
                 end
                 return DropFunction
             end
-            function Elements:NewKeybind(keytext, keyinf, first, callback)
+            function Elements:AddKeybind(keytext, keyinf, first, callback)
                 keytext = keytext or "KeybindText"
                 keyinf = keyinf or "KebindInfo"
                 callback = callback or function() end
@@ -2151,7 +2151,7 @@ end)
                 end)()
             end
 
-            function Elements:NewColorPicker(colText, colInf, defcolor, callback)
+            function Elements:AddColorPicker(colText, colInf, defcolor, callback)
                 colText = colText or "ColorPicker"
                 callback = callback or function() end
                 defcolor = defcolor or Color3.fromRGB(1,1,1)
@@ -2619,7 +2619,7 @@ end)
                 setcolor({h,s,v})
             end
             
-            function Elements:NewLabel(title)
+            function Elements:AddLabel(title)
             	local labelFunctions = {}
             	local label = Instance.new("TextLabel")
             	local UICorner = Instance.new("UICorner")
