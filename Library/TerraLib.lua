@@ -997,7 +997,7 @@ end)
                 end)()
             end 
 
-                function Elements:NewToggle(tname, nTip, callback)
+                function Elements:AddToggle(tname, nTip, callback)
                     local TogFunction = {}
                     tname = tname or "Toggle"
                     nTip = nTip or "Prints Current Toggle State"
