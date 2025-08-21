@@ -197,7 +197,7 @@ function Kavo.CreateWindow(kavName, themeList)
     Main.BackgroundColor3 = themeList.Background
     Main.ClipsDescendants = true
     Main.AnchorPoint = Vector2.new(0.5, 0.5)
-    Main.Position = UDim2.new(0.5, 0, 0.35, 0)
+    Main.Position = UDim2.new(0.5, 0, 0.45, 0)
     Main.Size = UDim2.new(0, 525, 0, 310)
     Main.Visible = true
     Kavo.Main = Main
