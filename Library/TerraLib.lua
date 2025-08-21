@@ -14,7 +14,7 @@ local Utility = {}
 local Objects = {}
 
 function Utility:TweenObject(obj, properties, duration, ...)
-    TweenService:Create(obj, TweenInfo.new(duration, ...), properties):Play()
+    TweenService:Create(obj, tweeninfo(duration, ...), properties):Play()
 end
 
 local isMobile = UserInputService.TouchEnabled and not UserInputService.KeyboardEnabled
@@ -241,29 +241,29 @@ local dragInput
 local dragStart
 local startPos
 
-Main.InputBegan:Connect(function(UserInputService)
-	if UserInputService.UserInputType == Enum.UserInputType.Touch then
+Main.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.Touch then
 		dragging = true
-		dragStart = UserInputService.Position
+		dragStart = input.Position
 		startPos = Main.Position
 
-		UserInputService.Changed:Connect(function()
-			if UserInputService.UserInputState == Enum.UserInputState.End then
+		input.Changed:Connect(function()
+			if input.UserInputState == Enum.UserInputState.End then
 				dragging = false
 			end
 		end)
 	end
 end)
 
-Main.InputChanged:Connect(function(UserInputService)
-	if UserInputService.UserInputType == Enum.UserInputType.Touch then
-		dragInput = UserInputService
+Main.InputChanged:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.Touch then
+		dragInput = input
 	end
 end)
 
-UserInputService.InputChanged:Connect(function(UserInputService)
-	if UserInputService == dragInput and dragging then
-		local delta = UserInputService.Position - dragStart
+UserInputService.InputChanged:Connect(function(input)
+	if input == dragInput and dragging then
+		local delta = input.Position - dragStart
 		Main.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
 	end
 end)
@@ -2618,8 +2618,8 @@ end)
                 mouse.Move:connect(cp)
                 rgb.MouseButton1Down:connect(function()colorpicker=true end)
                 dark.MouseButton1Down:connect(function()darknesss=true end)
-                uis.InputEnded:Connect(function(UserInputService)
-                    if UserInputService.UserInputType.Name == 'MouseButton1' then
+                uis.InputEnded:Connect(function(input)
+                    if input.UserInputType.Name == 'MouseButton1' then
                         if darknesss then darknesss = false end
                         if colorpicker then colorpicker = false end
                     end
