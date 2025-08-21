@@ -14,7 +14,7 @@ local Utility = {}
 local Objects = {}
 
 function Utility:TweenObject(obj, properties, duration, ...)
-    TweenService:Create(obj, tweeninfo(duration, ...), properties):Play()
+    TweenService:Create(obj, TweenInfo.new(duration, ...), properties):Play()
 end
 
 local isMobile = UserInputService.TouchEnabled and not UserInputService.KeyboardEnabled
