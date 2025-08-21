@@ -1,17 +1,25 @@
 local Kavo = {}
 
-local tween = game:GetService("TweenService")
-local tweeninfo = TweenInfo.new
-local input = game:GetService("UserInputService")
-local run = game:GetService("RunService")
+local MarketplaceService = game:GetService("MarketplaceService")
+local UserInputService = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
+local HttpService = game:GetService("HttpService")
+local RunService = game:GetService("RunService")
+local CoreGui = game:GetService("CoreGui")
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
+local PlayerMouse = Player:GetMouse()
 
 local Utility = {}
 local Objects = {}
 
 function Utility:TweenObject(obj, properties, duration, ...)
-    tween:Create(obj, tweeninfo(duration, ...), properties):Play()
+    TweenService:Create(obj, TweenInfo.new(duration, ...), properties):Play()
 end
 
+local isMobile = UserInputService.TouchEnabled and not UserInputService.KeyboardEnabled
+local isTablet = UserInputService.TouchEnabled and UserInputService.KeyboardEnabled
+local isPC = not UserInputService.TouchEnabled and UserInputService.KeyboardEnabled
 
 local themes = {
     SchemeColor = Color3.fromRGB(74, 99, 135),
@@ -233,29 +241,29 @@ local dragInput
 local dragStart
 local startPos
 
-Main.InputBegan:Connect(function(input)
-	if input.UserInputType == Enum.UserInputType.Touch then
+Main.InputBegan:Connect(function(UserInputService)
+	if UserInputService.UserInputType == Enum.UserInputType.Touch then
 		dragging = true
-		dragStart = input.Position
+		dragStart = UserInputService.Position
 		startPos = Main.Position
 
-		input.Changed:Connect(function()
-			if input.UserInputState == Enum.UserInputState.End then
+		UserInputService.Changed:Connect(function()
+			if UserInputService.UserInputState == Enum.UserInputState.End then
 				dragging = false
 			end
 		end)
 	end
 end)
 
-Main.InputChanged:Connect(function(input)
-	if input.UserInputType == Enum.UserInputType.Touch then
-		dragInput = input
+Main.InputChanged:Connect(function(UserInputService)
+	if UserInputService.UserInputType == Enum.UserInputType.Touch then
+		dragInput = UserInputService
 	end
 end)
 
-UserInputService.InputChanged:Connect(function(input)
-	if input == dragInput and dragging then
-		local delta = input.Position - dragStart
+UserInputService.InputChanged:Connect(function(UserInputService)
+	if UserInputService == dragInput and dragging then
+		local delta = UserInputService.Position - dragStart
 		Main.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
 	end
 end)
@@ -2610,8 +2618,8 @@ end)
                 mouse.Move:connect(cp)
                 rgb.MouseButton1Down:connect(function()colorpicker=true end)
                 dark.MouseButton1Down:connect(function()darknesss=true end)
-                uis.InputEnded:Connect(function(input)
-                    if input.UserInputType.Name == 'MouseButton1' then
+                uis.InputEnded:Connect(function(UserInputService)
+                    if UserInputService.UserInputType.Name == 'MouseButton1' then
                         if darknesss then darknesss = false end
                         if colorpicker then colorpicker = false end
                     end
