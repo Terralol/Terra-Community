@@ -1,4 +1,4 @@
-local Kavo = {}
+local Terra = {}
 
 local MarketplaceService = game:GetService("MarketplaceService")
 local UserInputService = game:GetService("UserInputService")
@@ -92,7 +92,7 @@ local SettingsT = {
 
 }
 
-local Name = "KavoConfig.JSON"
+local Name = "TerraConfig.JSON"
 
 pcall(function()
 
@@ -103,23 +103,23 @@ end
 Settings = game:service'HttpService':JSONEncode(readfile(Name))
 end)
 
-local LibName = "kavolib"
+local LibName = "Terralib"
 
-for i, gui in pairs(game.CoreGui:GetChildren()) do
+for i, gui in pairs(CoreGui:GetChildren()) do
     if gui:IsA("ScreenGui") and gui.Name == LibName then
         gui:Destroy()
     end
 end
 
-function Kavo:ToggleUI()
-    if game.CoreGui[LibName].Enabled then
-        game.CoreGui[LibName].Enabled = false
+function Terra:ToggleUI()
+    if CoreGui[LibName].Enabled then
+        CoreGui[LibName].Enabled = false
     else
-        game.CoreGui[LibName].Enabled = true
+        CoreGui[LibName].Enabled = true
     end
 end
 
-function Kavo.CreateWindow(kavName, themeList)
+function Terra.CreateWindow(kavName, themeList)
     if not themeList then
         themeList = themes
     end
@@ -160,8 +160,8 @@ function Kavo.CreateWindow(kavName, themeList)
     themeList = themeList or {}
     local selectedTab 
     kavName = kavName or "Library"
-    table.insert(Kavo, kavName)
-    for i,v in pairs(game.CoreGui:GetChildren()) do
+    table.insert(Terra, kavName)
+    for i,v in pairs(CoreGui:GetChildren()) do
         if v:IsA("ScreenGui") and v.Name == kavName then
             v:Destroy()
         end
@@ -195,7 +195,7 @@ function Kavo.CreateWindow(kavName, themeList)
     blurFrame.Size = UDim2.new(0, 376, 0, 289)
     blurFrame.ZIndex = 999
 
-    ScreenGui.Parent = game.CoreGui
+    ScreenGui.Parent = CoreGui
     ScreenGui.Name = LibName
     ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
     ScreenGui.ResetOnSpawn = false
@@ -208,7 +208,7 @@ function Kavo.CreateWindow(kavName, themeList)
     Main.Position = UDim2.new(0.5, 0, 0.48, 0)
     Main.Size = UDim2.new(0, 525, 0, 310)
     Main.Visible = true
-    Kavo.Main = Main
+    Terra.Main = Main
 
 	ReButton.Name = "ReButton"
 	ReButton.Parent = ScreenGui
@@ -387,7 +387,7 @@ end)
         end
     end)()
 
-    function Kavo:ChangeColor(prope,color)
+    function Terra:ChangeColor(prope,color)
         if prope == "Background" then
             themeList.Background = color
         elseif prope == "SchemeColor" then
@@ -720,7 +720,7 @@ end)
                 updateSectionFrame()
                                 UpdateSize()
 
-                local ms = game.Players.LocalPlayer:GetMouse()
+                local ms = PlayerMouse
 
                 local btn = buttonElement
                 local sample = Sample
@@ -1110,7 +1110,7 @@ end)
                     UICorner.CornerRadius = UDim.new(0, 4)
                     UICorner.Parent = moreInfo
 
-                    local ms = game.Players.LocalPlayer:GetMouse()
+                    local ms = PlayerMouse
 
                     if themeList.SchemeColor == Color3.fromRGB(255,255,255) then
                         Utility:TweenObject(moreInfo, {TextColor3 = Color3.fromRGB(0,0,0)}, 0.2)
@@ -1394,9 +1394,9 @@ end)
 
                                 updateSectionFrame()
                 UpdateSize()
-                local mouse = game:GetService("Players").LocalPlayer:GetMouse();
+                local mouse = PlayerMouse;
 
-                local ms = game.Players.LocalPlayer:GetMouse()
+                local ms = PlayerMouse
                 local uis = game:GetService("UserInputService")
                 local btn = sliderElement
                 local infBtn = viewInfo
@@ -1518,7 +1518,7 @@ end)
                 local UIListLayout = Instance.new("UIListLayout")
                 local Sample = Instance.new("ImageLabel")
 
-                local ms = game.Players.LocalPlayer:GetMouse()
+                local ms = PlayerMouse
                 Sample.Name = "Sample"
                 Sample.Parent = dropOpen
                 Sample.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -1659,7 +1659,7 @@ end)
                 updateSectionFrame() 
                 UpdateSize()
 
-                local ms = game.Players.LocalPlayer:GetMouse()
+                local ms = PlayerMouse
                 local uis = game:GetService("UserInputService")
                 local infBtn = viewInfo
 
@@ -1746,7 +1746,7 @@ end)
                     local UICorner_2 = Instance.new("UICorner")
                     local Sample1 = Instance.new("ImageLabel")
 
-                    local ms = game.Players.LocalPlayer:GetMouse()
+                    local ms = PlayerMouse
                     Sample1.Name = "Sample1"
                     Sample1.Parent = optionSelect
                     Sample1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -1845,7 +1845,7 @@ end)
                         local optionSelect = Instance.new("TextButton")
                         local UICorner_2 = Instance.new("UICorner")
                         local Sample11 = Instance.new("ImageLabel")
-                        local ms = game.Players.LocalPlayer:GetMouse()
+                        local ms = PlayerMouse
                         Sample11.Name = "Sample11"
                         Sample11.Parent = optionSelect
                         Sample11.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -1959,7 +1959,7 @@ end)
                 local Sample = Instance.new("ImageLabel")
                 local togName_2 = Instance.new("TextLabel")
 
-                local ms = game.Players.LocalPlayer:GetMouse()
+                local ms = PlayerMouse
                 local uis = game:GetService("UserInputService")
                 local infBtn = viewInfo
 
@@ -2164,7 +2164,7 @@ end)
                 callback = callback or function() end
                 defcolor = defcolor or Color3.fromRGB(1,1,1)
                 local h, s, v = Color3.toHSV(defcolor)
-                local ms = game.Players.LocalPlayer:GetMouse()
+                local ms = PlayerMouse
                 local colorOpened = false
                 local colorElement = Instance.new("TextButton")
                 local UICorner = Instance.new("UICorner")
@@ -2520,9 +2520,8 @@ end)
                 updateSectionFrame()
                 UpdateSize()
                 local plr = game.Players.LocalPlayer
-                local mouse = plr:GetMouse()
+                local mouse = PlayerMouse
                 local uis = game:GetService('UserInputService')
-                local rs = game:GetService("RunService")
                 local colorpicker = false
                 local darknesss = false
                 local dark = false
@@ -2538,7 +2537,7 @@ end)
                 local function zigzag(X) return math.acos(math.cos(X*math.pi))/math.pi end
                 counter = 0
                 local function mouseLocation()
-                    return plr:GetMouse()
+                    return PlayerMouse
                 end
                 local function cp()
                     if colorpicker then
@@ -2606,7 +2605,7 @@ end)
                             ImageTransparency = 0
                         }):Play()
                         rainbow = true
-                        rainbowconnection = rs.RenderStepped:Connect(function()
+                        rainbowconnection = RunService.RenderStepped:Connect(function()
                             setrgbcolor({zigzag(counter),1,1})
                             counter = counter + 0.01
                         end)
@@ -2638,7 +2637,7 @@ end)
 				label.ClipsDescendants = true
             	label.Text = title
            		label.Size = UDim2.new(0, 352, 0, 33)
-	            label.Font = Enum.Font.Gotham
+	            label.Font = Enum.Font.SourceSans
 	            label.Text = "  "..title
 	            label.RichText = true
 	            label.TextColor3 = themeList.TextColor
@@ -2677,4 +2676,4 @@ end)
     end  
     return Tabs
 end
-return Kavo
+return Terra
