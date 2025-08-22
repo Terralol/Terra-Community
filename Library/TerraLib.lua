@@ -428,7 +428,7 @@ end)
         page.Size = UDim2.new(1, 0, 1, 0)
         page.ScrollBarThickness = 5
         page.Visible = false
-        page.ScrollBarImageColor3 = Color3.fromRGB(themeList.SchemeColor.r * 255 - 16, themeList.SchemeColor.g * 255 - 15, themeList.SchemeColor.b * 255 - 28)
+        page.ScrollBarImageColor3 = themeList.SchemeColor
 
         pageListing.Name = "pageListing"
         pageListing.Parent = page
@@ -868,7 +868,7 @@ end)
                 TextBox.ZIndex = 99
                 TextBox.ClearTextOnFocus = false
                 TextBox.Font = Enum.Font.Gotham
-                TextBox.PlaceholderColor3 = Color3.fromRGB(themeList.SchemeColor.r * 255 - 19, themeList.SchemeColor.g * 255 - 26, themeList.SchemeColor.b * 255 - 35)
+                TextBox.PlaceholderColor3 = themeList.SchemeColor
                 TextBox.PlaceholderText = "Type here!"
                 TextBox.Text = ""
                 TextBox.TextColor3 = themeList.SchemeColor
@@ -999,7 +999,7 @@ end)
                         moreInfo.TextColor3 = themeList.TextColor
                         write.ImageColor3 = themeList.SchemeColor
                         togName.TextColor3 = themeList.TextColor
-                        TextBox.PlaceholderColor3 = Color3.fromRGB(themeList.SchemeColor.r * 255 - 19, themeList.SchemeColor.g * 255 - 26, themeList.SchemeColor.b * 255 - 35)
+                        TextBox.PlaceholderColor3 = themeList.SchemeColor
                         TextBox.TextColor3 = themeList.SchemeColor
                     end
                 end)()
