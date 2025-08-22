@@ -2637,7 +2637,7 @@ end)
 				label.ClipsDescendants = true
             	label.Text = title
            		label.Size = UDim2.new(0, 352, 0, 33)
-	            label.Font = Enum.Font.SourceSans
+	            label.Font = Enum.Font.GothamSemibold
 	            label.Text = "  "..title
 	            label.RichText = true
 	            label.TextColor3 = themeList.TextColor
