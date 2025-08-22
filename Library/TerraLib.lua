@@ -1004,255 +1004,286 @@ end)
                     end
                 end)()
             end 
+ function Elements:AddToggle(tname, nTip, callback)
+    local TogFunction = {}
+    tname = tname or "Toggle"
+    nTip = nTip or "Prints Current Toggle State"
+    callback = callback or function() end
+    local toggled = false
+    local isAnimating = false
+    table.insert(SettingsT, tname)
 
-                function Elements:AddToggle(tname, nTip, callback)
-                    local TogFunction = {}
-                    tname = tname or "Toggle"
-                    nTip = nTip or "Prints Current Toggle State"
-                    callback = callback or function() end
-                    local toggled = false
-                    table.insert(SettingsT, tname)
+    local toggleElement = Instance.new("TextButton")
+    local UICorner = Instance.new("UICorner")
+    local toggleDisabled = Instance.new("ImageLabel")
+    local toggleEnabled = Instance.new("ImageLabel")
+    local togName = Instance.new("TextLabel")
+    local viewInfo = Instance.new("ImageButton")
+    local Sample = Instance.new("ImageLabel")
 
-                    local toggleElement = Instance.new("TextButton")
-                    local UICorner = Instance.new("UICorner")
-                    local toggleDisabled = Instance.new("ImageLabel")
-                    local toggleEnabled = Instance.new("ImageLabel")
-                    local togName = Instance.new("TextLabel")
-                    local viewInfo = Instance.new("ImageButton")
-                    local Sample = Instance.new("ImageLabel")
+    toggleElement.Name = "toggleElement"
+    toggleElement.Parent = sectionInners
+    toggleElement.BackgroundColor3 = themeList.ElementColor
+    toggleElement.ClipsDescendants = true
+    toggleElement.Size = UDim2.new(0, 352, 0, 33)
+    toggleElement.AutoButtonColor = false
+    toggleElement.Font = Enum.Font.SourceSans
+    toggleElement.Text = ""
+    toggleElement.TextColor3 = Color3.fromRGB(0, 0, 0)
+    toggleElement.TextSize = 14.000
 
-                    toggleElement.Name = "toggleElement"
-                    toggleElement.Parent = sectionInners
-                    toggleElement.BackgroundColor3 = themeList.ElementColor
-                    toggleElement.ClipsDescendants = true
-                    toggleElement.Size = UDim2.new(0, 352, 0, 33)
-                    toggleElement.AutoButtonColor = false
-                    toggleElement.Font = Enum.Font.SourceSans
-                    toggleElement.Text = ""
-                    toggleElement.TextColor3 = Color3.fromRGB(0, 0, 0)
-                    toggleElement.TextSize = 14.000
+    UICorner.CornerRadius = UDim.new(0, 4)
+    UICorner.Parent = toggleElement
 
-                    UICorner.CornerRadius = UDim.new(0, 4)
-                    UICorner.Parent = toggleElement
+    toggleDisabled.Name = "toggleDisabled"
+    toggleDisabled.Parent = toggleElement
+    toggleDisabled.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    toggleDisabled.BackgroundTransparency = 1.000
+    toggleDisabled.Position = UDim2.new(0.0199999996, 0, 0.180000007, 0)
+    toggleDisabled.Size = UDim2.new(0, 21, 0, 21)
+    toggleDisabled.Image = "rbxassetid://3926309567"
+    toggleDisabled.ImageColor3 = themeList.SchemeColor
+    toggleDisabled.ImageRectOffset = Vector2.new(628, 420)
+    toggleDisabled.ImageRectSize = Vector2.new(48, 48)
 
-                    toggleDisabled.Name = "toggleDisabled"
-                    toggleDisabled.Parent = toggleElement
-                    toggleDisabled.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                    toggleDisabled.BackgroundTransparency = 1.000
-                    toggleDisabled.Position = UDim2.new(0.0199999996, 0, 0.180000007, 0)
-                    toggleDisabled.Size = UDim2.new(0, 21, 0, 21)
-                    toggleDisabled.Image = "rbxassetid://3926309567"
-                    toggleDisabled.ImageColor3 = themeList.SchemeColor
-                    toggleDisabled.ImageRectOffset = Vector2.new(628, 420)
-                    toggleDisabled.ImageRectSize = Vector2.new(48, 48)
+    toggleEnabled.Name = "toggleEnabled"
+    toggleEnabled.Parent = toggleElement
+    toggleEnabled.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    toggleEnabled.BackgroundTransparency = 1.000
+    toggleEnabled.Position = UDim2.new(0.0199999996, 0, 0.180000007, 0)
+    toggleEnabled.Size = UDim2.new(0, 21, 0, 21)
+    toggleEnabled.Image = "rbxassetid://3926309567"
+    toggleEnabled.ImageColor3 = themeList.SchemeColor
+    toggleEnabled.ImageRectOffset = Vector2.new(784, 420)
+    toggleEnabled.ImageRectSize = Vector2.new(48, 48)
+    toggleEnabled.ImageTransparency = 1.000
 
-                    toggleEnabled.Name = "toggleEnabled"
-                    toggleEnabled.Parent = toggleElement
-                    toggleEnabled.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                    toggleEnabled.BackgroundTransparency = 1.000
-                    toggleEnabled.Position = UDim2.new(0.0199999996, 0, 0.180000007, 0)
-                    toggleEnabled.Size = UDim2.new(0, 21, 0, 21)
-                    toggleEnabled.Image = "rbxassetid://3926309567"
-                    toggleEnabled.ImageColor3 = themeList.SchemeColor
-                    toggleEnabled.ImageRectOffset = Vector2.new(784, 420)
-                    toggleEnabled.ImageRectSize = Vector2.new(48, 48)
-                    toggleEnabled.ImageTransparency = 1.000
+    togName.Name = "togName"
+    togName.Parent = toggleElement
+    togName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    togName.BackgroundTransparency = 1.000
+    togName.Position = UDim2.new(0.096704483, 0, 0.272727281, 0)
+    togName.Size = UDim2.new(0, 288, 0, 14)
+    togName.Font = Enum.Font.GothamSemibold
+    togName.Text = tname
+    togName.RichText = true
+    togName.TextColor3 = themeList.TextColor
+    togName.TextSize = 14.000
+    togName.TextXAlignment = Enum.TextXAlignment.Left
 
-                    togName.Name = "togName"
-                    togName.Parent = toggleElement
-                    togName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                    togName.BackgroundTransparency = 1.000
-                    togName.Position = UDim2.new(0.096704483, 0, 0.272727281, 0)
-                    togName.Size = UDim2.new(0, 288, 0, 14)
-                    togName.Font = Enum.Font.GothamSemibold
-                    togName.Text = tname
-                    togName.RichText = true
-                    togName.TextColor3 = themeList.TextColor
-                    togName.TextSize = 14.000
-                    togName.TextXAlignment = Enum.TextXAlignment.Left
+    viewInfo.Name = "viewInfo"
+    viewInfo.Parent = toggleElement
+    viewInfo.BackgroundTransparency = 1.000
+    viewInfo.LayoutOrder = 9
+    viewInfo.Position = UDim2.new(0.930000007, 0, 0.151999995, 0)
+    viewInfo.Size = UDim2.new(0, 23, 0, 23)
+    viewInfo.ZIndex = 2
+    viewInfo.Image = "rbxassetid://3926305904"
+    viewInfo.ImageColor3 = themeList.SchemeColor
+    viewInfo.ImageRectOffset = Vector2.new(764, 764)
+    viewInfo.ImageRectSize = Vector2.new(36, 36)
 
-                    viewInfo.Name = "viewInfo"
-                    viewInfo.Parent = toggleElement
-                    viewInfo.BackgroundTransparency = 1.000
-                    viewInfo.LayoutOrder = 9
-                    viewInfo.Position = UDim2.new(0.930000007, 0, 0.151999995, 0)
-                    viewInfo.Size = UDim2.new(0, 23, 0, 23)
-                    viewInfo.ZIndex = 2
-                    viewInfo.Image = "rbxassetid://3926305904"
-                    viewInfo.ImageColor3 = themeList.SchemeColor
-                    viewInfo.ImageRectOffset = Vector2.new(764, 764)
-                    viewInfo.ImageRectSize = Vector2.new(36, 36)
+    Sample.Name = "Sample"
+    Sample.Parent = toggleElement
+    Sample.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Sample.BackgroundTransparency = 1.000
+    Sample.Image = "http://www.roblox.com/asset/?id=4560909609"
+    Sample.ImageColor3 = themeList.SchemeColor
+    Sample.ImageTransparency = 0.600
 
-                    Sample.Name = "Sample"
-                    Sample.Parent = toggleElement
-                    Sample.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                    Sample.BackgroundTransparency = 1.000
-                    Sample.Image = "http://www.roblox.com/asset/?id=4560909609"
-                    Sample.ImageColor3 = themeList.SchemeColor
-                    Sample.ImageTransparency = 0.600
+    local moreInfo = Instance.new("TextLabel")
+    local UICorner2 = Instance.new("UICorner")
 
-                    local moreInfo = Instance.new("TextLabel")
-                    local UICorner = Instance.new("UICorner")
-    
-                    moreInfo.Name = "TipMore"
-                    moreInfo.Parent = infoContainer
-                    moreInfo.BackgroundColor3 = Color3.fromRGB(themeList.SchemeColor.r * 255 - 14, themeList.SchemeColor.g * 255 - 17, themeList.SchemeColor.b * 255 - 13)
-                    moreInfo.Position = UDim2.new(0, 0, 2, 0)
-                    moreInfo.Size = UDim2.new(0, 353, 0, 33)
-                    moreInfo.ZIndex = 9
-                    moreInfo.Font = Enum.Font.GothamSemibold
-                    moreInfo.RichText = true
-                    moreInfo.Text = "  "..nTip
-                    moreInfo.TextColor3 = themeList.TextColor
-                    moreInfo.TextSize = 14.000
-                    moreInfo.TextXAlignment = Enum.TextXAlignment.Left
-    
-                    UICorner.CornerRadius = UDim.new(0, 4)
-                    UICorner.Parent = moreInfo
+    moreInfo.Name = "TipMore"
+    moreInfo.Parent = infoContainer
+    moreInfo.BackgroundColor3 = Color3.fromRGB(themeList.SchemeColor.r * 255 - 14, themeList.SchemeColor.g * 255 - 17, themeList.SchemeColor.b * 255 - 13)
+    moreInfo.Position = UDim2.new(0, 0, 2, 0)
+    moreInfo.Size = UDim2.new(0, 353, 0, 33)
+    moreInfo.ZIndex = 9
+    moreInfo.Font = Enum.Font.GothamSemibold
+    moreInfo.RichText = true
+    moreInfo.Text = "  "..nTip
+    moreInfo.TextColor3 = themeList.TextColor
+    moreInfo.TextSize = 14.000
+    moreInfo.TextXAlignment = Enum.TextXAlignment.Left
 
-                    local ms = PlayerMouse
+    UICorner2.CornerRadius = UDim.new(0, 4)
+    UICorner2.Parent = moreInfo
 
-                    if themeList.SchemeColor == Color3.fromRGB(255,255,255) then
-                        Utility:TweenObject(moreInfo, {TextColor3 = Color3.fromRGB(0,0,0)}, 0.2)
-                    end 
-                    if themeList.SchemeColor == Color3.fromRGB(0,0,0) then
-                        Utility:TweenObject(moreInfo, {TextColor3 = Color3.fromRGB(255,255,255)}, 0.2)
-                    end 
+    if themeList.SchemeColor == Color3.fromRGB(255,255,255) then
+        moreInfo.TextColor3 = Color3.fromRGB(0,0,0)
+    elseif themeList.SchemeColor == Color3.fromRGB(0,0,0) then
+        moreInfo.TextColor3 = Color3.fromRGB(255,255,255)
+    end 
 
-                    local btn = toggleElement
-                    local sample = Sample
-                    local img = toggleEnabled
-                    local infBtn = viewInfo
-
-                                    updateSectionFrame()
-                UpdateSize()
-
-                    btn.MouseButton1Click:Connect(function()
-                        if not focusing then
-                            if toggled == false then
-                                game.TweenService:Create(img, TweenInfo.new(0.11, Enum.EasingStyle.Linear,Enum.EasingDirection.In), {
-                                    ImageTransparency = 0
-                                }):Play()
-                                local c = sample:Clone()
-                                c.Parent = btn
-                                local x, y = (ms.X - c.AbsolutePosition.X), (ms.Y - c.AbsolutePosition.Y)
-                                c.Position = UDim2.new(0, x, 0, y)
-                                local len, size = 0.35, nil
-                                if btn.AbsoluteSize.X >= btn.AbsoluteSize.Y then
-                                    size = (btn.AbsoluteSize.X * 1.5)
-                                else
-                                    size = (btn.AbsoluteSize.Y * 1.5)
-                                end
-                                c:TweenSizeAndPosition(UDim2.new(0, size, 0, size), UDim2.new(0.5, (-size / 2), 0.5, (-size / 2)), 'Out', 'Quad', len, true, nil)
-                                for i = 1, 10 do
-                                    c.ImageTransparency = c.ImageTransparency + 0.05
-                                    wait(len / 12)
-                                end
-                                c:Destroy()
-                            else
-                                game.TweenService:Create(img, TweenInfo.new(0.11, Enum.EasingStyle.Linear,Enum.EasingDirection.In), {
-                                    ImageTransparency = 1
-                                }):Play()
-                                local c = sample:Clone()
-                                c.Parent = btn
-                                local x, y = (ms.X - c.AbsolutePosition.X), (ms.Y - c.AbsolutePosition.Y)
-                                c.Position = UDim2.new(0, x, 0, y)
-                                local len, size = 0.35, nil
-                                if btn.AbsoluteSize.X >= btn.AbsoluteSize.Y then
-                                    size = (btn.AbsoluteSize.X * 1.5)
-                                else
-                                    size = (btn.AbsoluteSize.Y * 1.5)
-                                end
-                                c:TweenSizeAndPosition(UDim2.new(0, size, 0, size), UDim2.new(0.5, (-size / 2), 0.5, (-size / 2)), 'Out', 'Quad', len, true, nil)
-                                for i = 1, 10 do
-                                    c.ImageTransparency = c.ImageTransparency + 0.05
-                                    wait(len / 12)
-                                end
-                                c:Destroy()
-                            end
-                            toggled = not toggled
-                            pcall(callback, toggled)
-                        else
-                            for i,v in next, infoContainer:GetChildren() do
-                                Utility:TweenObject(v, {Position = UDim2.new(0,0,2,0)}, 0.2)
-                                focusing = false
-                            end
-                            Utility:TweenObject(blurFrame, {BackgroundTransparency = 1}, 0.2)
-                        end
-                    end)
-                    local hovering = false
-                    btn.MouseEnter:Connect(function()
-                        if not focusing then
-                            game.TweenService:Create(btn, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
-                                BackgroundColor3 = Color3.fromRGB(themeList.ElementColor.r * 255 + 8, themeList.ElementColor.g * 255 + 9, themeList.ElementColor.b * 255 + 10)
-                            }):Play()
-                            hovering = true
-                        end 
-                    end)
-                    btn.MouseLeave:Connect(function()
-                        if not focusing then
-                            game.TweenService:Create(btn, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
-                                BackgroundColor3 = themeList.ElementColor
-                            }):Play()
-                            hovering = false
-                        end
-                    end)
-
-                    coroutine.wrap(function()
-                        while wait() do
-                            if not hovering then
-                                toggleElement.BackgroundColor3 = themeList.ElementColor
-                            end
-                            toggleDisabled.ImageColor3 = themeList.SchemeColor
-                            toggleEnabled.ImageColor3 = themeList.SchemeColor
-                            togName.TextColor3 = themeList.TextColor
-                            viewInfo.ImageColor3 = themeList.SchemeColor
-                            Sample.ImageColor3 = themeList.SchemeColor
-                            moreInfo.BackgroundColor3 = Color3.fromRGB(themeList.SchemeColor.r * 255 - 14, themeList.SchemeColor.g * 255 - 17, themeList.SchemeColor.b * 255 - 13)
-                            moreInfo.TextColor3 = themeList.TextColor
-                        end
-                    end)()
-                    viewInfo.MouseButton1Click:Connect(function()
-                        if not viewDe then
-                            viewDe = true
-                            focusing = true
-                            for i,v in next, infoContainer:GetChildren() do
-                                if v ~= moreInfo then
-                                    Utility:TweenObject(v, {Position = UDim2.new(0,0,2,0)}, 0.2)
-                                end
-                            end
-                            Utility:TweenObject(moreInfo, {Position = UDim2.new(0,0,0,0)}, 0.2)
-                            Utility:TweenObject(blurFrame, {BackgroundTransparency = 0.5}, 0.2)
-                            Utility:TweenObject(btn, {BackgroundColor3 = themeList.ElementColor}, 0.2)
-                            wait(1.5)
-                            focusing = false
-                            Utility:TweenObject(moreInfo, {Position = UDim2.new(0,0,2,0)}, 0.2)
-                            Utility:TweenObject(blurFrame, {BackgroundTransparency = 1}, 0.2)
-                            wait(0)
-                            viewDe = false
-                        end
-                    end)
-                    function TogFunction:UpdateToggle(newText, isTogOn)
-                        isTogOn = isTogOn or toggle
-                        if newText ~= nil then 
-                            togName.Text = newText
-                        end
-                        if isTogOn then
-                            toggled = true
-                            game.TweenService:Create(img, TweenInfo.new(0.11, Enum.EasingStyle.Linear,Enum.EasingDirection.In), {
-                                ImageTransparency = 0
-                            }):Play()
-                            pcall(callback, toggled)
-                        else
-                            toggled = false
-                            game.TweenService:Create(img, TweenInfo.new(0.11, Enum.EasingStyle.Linear,Enum.EasingDirection.In), {
-                                ImageTransparency = 1
-                            }):Play()
-                            pcall(callback, toggled)
-                        end
-                    end
-                    return TogFunction
+    local function playRippleEffect()
+        if isAnimating then return end
+        isAnimating = true
+        
+        local ripple = Sample:Clone()
+        ripple.Parent = toggleElement
+        local ms = PlayerMouse
+        local x, y = (ms.X - toggleElement.AbsolutePosition.X), (ms.Y - toggleElement.AbsolutePosition.Y)
+        ripple.Position = UDim2.new(0, x, 0, y)
+        
+        local size = math.max(toggleElement.AbsoluteSize.X, toggleElement.AbsoluteSize.Y) * 1.5
+        
+        spawn(function()
+            ripple:TweenSizeAndPosition(
+                UDim2.new(0, size, 0, size), 
+                UDim2.new(0.5, -size/2, 0.5, -size/2), 
+                'Out', 'Quad', 0.35, true
+            )
+            
+            for i = 1, 10 do
+                ripple.ImageTransparency = ripple.ImageTransparency + 0.1
+                task.wait(0.03)
             end
+            ripple:Destroy()
+            isAnimating = false
+        end)
+    end
+
+    updateSectionFrame()
+    UpdateSize()
+
+    local debounce = false
+    toggleElement.MouseButton1Click:Connect(function()
+        if debounce or focusing then 
+            if focusing then
+                for i,v in pairs(infoContainer:GetChildren()) do
+                    Utility:TweenObject(v, {Position = UDim2.new(0,0,2,0)}, 0.2)
+                end
+                Utility:TweenObject(blurFrame, {BackgroundTransparency = 1}, 0.2)
+                focusing = false
+            end
+            return 
+        end
+        
+        debounce = true
+        toggled = not toggled
+        
+        game.TweenService:Create(toggleEnabled, TweenInfo.new(0.11, Enum.EasingStyle.Linear), {
+            ImageTransparency = toggled and 0 or 1
+        }):Play()
+        
+        playRippleEffect()
+        spawn(function()
+            pcall(callback, toggled)
+        end)
+        
+        task.wait(0.15)
+        debounce = false
+    end)
+
+    local hovering = false
+    local hoverTween
+    toggleElement.MouseEnter:Connect(function()
+        if not focusing then
+            hovering = true
+            if hoverTween then hoverTween:Cancel() end
+            hoverTween = game.TweenService:Create(toggleElement, TweenInfo.new(0.1, Enum.EasingStyle.Linear), {
+                BackgroundColor3 = Color3.fromRGB(
+                    math.min(255, themeList.ElementColor.r * 255 + 8),
+                    math.min(255, themeList.ElementColor.g * 255 + 9), 
+                    math.min(255, themeList.ElementColor.b * 255 + 10)
+                )
+            })
+            hoverTween:Play()
+        end 
+    end)
+
+    toggleElement.MouseLeave:Connect(function()
+        if not focusing then
+            hovering = false
+            if hoverTween then hoverTween:Cancel() end
+            hoverTween = game.TweenService:Create(toggleElement, TweenInfo.new(0.1, Enum.EasingStyle.Linear), {
+                BackgroundColor3 = themeList.ElementColor
+            })
+            hoverTween:Play()
+        end
+    end)
+
+    local themeConnection
+    local function updateTheme()
+        if not hovering then
+            toggleElement.BackgroundColor3 = themeList.ElementColor
+        end
+        toggleDisabled.ImageColor3 = themeList.SchemeColor
+        toggleEnabled.ImageColor3 = themeList.SchemeColor
+        togName.TextColor3 = themeList.TextColor
+        viewInfo.ImageColor3 = themeList.SchemeColor
+        Sample.ImageColor3 = themeList.SchemeColor
+        moreInfo.BackgroundColor3 = Color3.fromRGB(
+            math.max(0, themeList.SchemeColor.r * 255 - 14),
+            math.max(0, themeList.SchemeColor.g * 255 - 17), 
+            math.max(0, themeList.SchemeColor.b * 255 - 13)
+        )
+        moreInfo.TextColor3 = themeList.TextColor
+    end
+
+    if themeList.Changed then
+        themeConnection = themeList.Changed:Connect(updateTheme)
+    else
+        spawn(function()
+            while toggleElement.Parent do
+                updateTheme()
+                task.wait(1)
+            end
+        end)
+    end
+
+    local viewDebounce = false
+    viewInfo.MouseButton1Click:Connect(function()
+        if viewDebounce then return end
+        viewDebounce = true
+        focusing = true
+        
+        for i,v in pairs(infoContainer:GetChildren()) do
+            if v ~= moreInfo then
+                Utility:TweenObject(v, {Position = UDim2.new(0,0,2,0)}, 0.2)
+            end
+        end
+        
+        Utility:TweenObject(moreInfo, {Position = UDim2.new(0,0,0,0)}, 0.2)
+        Utility:TweenObject(blurFrame, {BackgroundTransparency = 0.5}, 0.2)
+        Utility:TweenObject(toggleElement, {BackgroundColor3 = themeList.ElementColor}, 0.2)
+        
+        spawn(function()
+            task.wait(1.5)
+            focusing = false
+            Utility:TweenObject(moreInfo, {Position = UDim2.new(0,0,2,0)}, 0.2)
+            Utility:TweenObject(blurFrame, {BackgroundTransparency = 1}, 0.2)
+            task.wait(0.2)
+            viewDebounce = false
+        end)
+    end)
+
+    function TogFunction:UpdateToggle(newText, isTogOn)
+        if newText then 
+            togName.Text = newText
+        end
+        if isTogOn ~= nil then
+            toggled = isTogOn
+            game.TweenService:Create(toggleEnabled, TweenInfo.new(0.11, Enum.EasingStyle.Linear), {
+                ImageTransparency = toggled and 0 or 1
+            }):Play()
+            spawn(function()
+                pcall(callback, toggled)
+            end)
+        end
+    end
+
+    function TogFunction:Destroy()
+        if themeConnection then
+            themeConnection:Disconnect()
+        end
+        toggleElement:Destroy()
+        moreInfo:Destroy()
+    end
+
+    return TogFunction
+end
 
             function Elements:AddSlider(slidInf, slidTip, maxvalue, minvalue, callback)
                 slidInf = slidInf or "Slider"
