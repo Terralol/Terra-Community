@@ -1,2 +1,2 @@
 # Terra-Community
-**Welcome to Terra Community**
+**Welcome to TerraHub Community**
