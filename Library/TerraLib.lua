@@ -1,3 +1,4 @@
+-- KavoLib Edited by TerraHub
 local Terra = {}
 
 local MarketplaceService = game:GetService("MarketplaceService")
@@ -88,9 +89,7 @@ local themeStyles = {
 }
 local oldTheme = ""
 
-local SettingsT = {
-
-}
+local SettingsT = {}
 
 local Name = "TerraConfig.JSON"
 
@@ -386,7 +385,21 @@ end)
             coverup.BackgroundColor3 = themeList.Header
         end
     end)()
-
+    function Terra:ChangeTheme(theme)
+        for prope, color in pairs(theme) do
+        if prope == "Background" then
+            themeList.Background = color
+        elseif prope == "SchemeColor" then
+            themeList.SchemeColor = color
+        elseif prope == "Header" then
+            themeList.Header = color
+        elseif prope == "TextColor" then
+            themeList.TextColor = color
+        elseif prope == "ElementColor" then
+            themeList.ElementColor = color
+            end
+        end
+    end
     function Terra:ChangeColor(prope,color)
         if prope == "Background" then
             themeList.Background = color
