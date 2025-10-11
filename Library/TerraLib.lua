@@ -400,7 +400,7 @@ end)
             end
         end
     end
-    function Library:ChangeTheme(name)
+    function Terra:ChangeTheme(name)
       local theme = themeStyles[name]
       if theme then
           self:FireTheme(theme)
