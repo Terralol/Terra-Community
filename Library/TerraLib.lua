@@ -385,7 +385,7 @@ end)
             coverup.BackgroundColor3 = themeList.Header
         end
     end)()
-    function Terra:ChangeTheme(theme)
+    function Terra:FireTheme(theme)
         for prope, color in pairs(theme) do
         if prope == "Background" then
             themeList.Background = color
@@ -399,6 +399,13 @@ end)
             themeList.ElementColor = color
             end
         end
+    end
+    function Library:ChangeTheme(name)
+      local theme = self.themeStyles[name]
+      if theme then
+          self:FireTheme(theme)
+          return theme
+       end
     end
     function Terra:ChangeColor(prope,color)
         if prope == "Background" then
