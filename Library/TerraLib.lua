@@ -401,7 +401,7 @@ end)
         end
     end
     function Library:ChangeTheme(name)
-      local theme = self.themeStyles[name]
+      local theme = themeStyles[name]
       if theme then
           self:FireTheme(theme)
           return theme
