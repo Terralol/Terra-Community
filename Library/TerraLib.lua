@@ -373,6 +373,7 @@ end)
     function Terra:ChangeTheme(name)
       local theme = themeStyles[name]
       if theme then
+          themeList = {}
           self:FireTheme(theme)
           return theme
        end
