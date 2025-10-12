@@ -371,12 +371,37 @@ end)
         end
     end
     function Terra:ChangeTheme(name)
-      local theme = themeStyles[name]
-      if theme then
-          themeList = {}
-          self:FireTheme(theme)
-          return theme
-       end
+	local theme = themeStyles[name]
+	if theme then
+		themeList = {}
+		self:FireTheme(theme)
+
+		local pulse = Instance.new("Frame")
+		pulse.Name = "PulseEffect"
+		pulse.Size = UDim2.new(0, 0, 0, 0)
+		pulse.Position = UDim2.new(0.5, 0, 0.5, 0)
+		pulse.AnchorPoint = Vector2.new(0.5, 0.5)
+		pulse.BackgroundColor3 = theme.SchemeColor
+		pulse.BackgroundTransparency = 0.5
+		pulse.BorderSizePixel = 0
+		pulse.ZIndex = 1000
+		pulse.ClipsDescendants = false
+		pulse.Parent = Main.Parent
+
+		local corner = Instance.new("UICorner")
+		corner.CornerRadius = UDim.new(1, 0)
+		corner.Parent = pulse
+
+		local tweenInfo = TweenInfo.new(0.6, Enum.EasingStyle.Sine, Enum.EasingDirection.Out)
+		local goal = {Size = UDim2.new(1, 100, 1, 100), BackgroundTransparency = 1}
+		local tween = game:GetService("TweenService"):Create(pulse, tweenInfo, goal)
+		tween:Play()
+		tween.Completed:Connect(function()
+			pulse:Destroy()
+		end)
+
+		return theme
+	    end
     end
     function Terra:ChangeColor(prope,color)
         if prope == "Background" then
