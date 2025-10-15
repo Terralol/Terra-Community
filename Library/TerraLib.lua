@@ -1244,7 +1244,7 @@ end)
         spawn(function()
             while toggleElement.Parent do
                 updateTheme()
-                task.wait(1)
+                task.wait()
             end
         end)
     end
