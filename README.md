@@ -8,4 +8,5 @@
 *• TPS Street Soccer* 
 
 
-<[![Telegram](https://img.shields.io/badge/Telegram-Join-blue?logo=telegram&style=for-the-badge)](https://t.me/YourChannelUsername)
+
+[![Telegram](https://img.shields.io/badge/Telegram-Join-blue?logo=telegram&style=for-the-badge)](https://t.me/YourChannelUsername)
