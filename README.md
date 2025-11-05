@@ -8,6 +8,7 @@
 **Supported Games:**
 
 *• TPS Street Soccer* 
+*• Survive The Killer*
 
 
 
